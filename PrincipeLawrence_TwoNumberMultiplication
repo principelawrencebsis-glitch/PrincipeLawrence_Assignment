@@ -1,0 +1,21 @@
+def get_numbers():
+    principenum1 = float(input("Enter first number: "))
+    principenum2 = float(input("Enter second number: "))
+    return principenum1, principenum2
+
+def multiply_numbers(principenum1, principenum2):
+    return principenum1 * principenum2
+
+def display_result(principenum1, principenum2, result):
+    print("=" * 40)
+    print("     Number Multiplier")
+    print("=" * 40)
+    print(f"\n{principenum1} × {principenum2} = {result}")
+
+def main():
+    principenum1, principenum2 = get_numbers()
+    result = multiply_numbers(principenum1, principenum2)
+    display_result(principenum1, principenum2, result)
+
+if __name__ == "__main__":
+    main()
