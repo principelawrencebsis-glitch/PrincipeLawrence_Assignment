@@ -1,0 +1,98 @@
+def display_header():
+    print("=" * 50)
+    print("           WELCOME TO THE LAWRENCE'S ATM ")
+    print("=" * 50)
+
+def display_menu():
+    print("\n|____________________________________|")
+    print("|         ATM MAIN MENU              |")
+    print("|------------------------------------|")
+    print("|  1. Check Balance                  |")
+    print("|  2. Deposit Money                  |")
+    print("|  3. Withdraw Money                 |")
+    print("|  4. Transaction History            |")
+    print("|  5. Exit                           |")
+    print("|____________________________________|")
+
+def check_balance(principebal):
+    print(f"\n Your current balance: ${principebal:.2f}")
+
+def deposit_money(principebal):
+    try:
+        amount = float(input("Enter amount to deposit: $"))
+        if amount > 0:
+            principebal += amount
+            print(f"\n Successfully deposited ${amount:.2f}")
+            print(f" New balance: ${principebal:.2f}")
+        else:
+            print("\n Invalid amount! Please enter a positive number.")
+    except ValueError:
+        print("\n Invalid input! Please enter a number.")
+    return principebal
+
+def withdraw_money(principebal):
+    try:
+        amount = float(input("Enter amount to withdraw: $"))
+        if amount > 0:
+            if amount <= principebal:
+                principebal -= amount
+                print(f"\n Successfully withdrew ${amount:.2f}")
+                print(f" Remaining balance: ${principebal:.2f}")
+            else:
+                print("\n Insufficient funds!")
+                print(f" Available balance: ${principebal:.2f}")
+        else:
+            print("\n Invalid amount! Please enter a positive number.")
+    except ValueError:
+        print("\n Invalid input! Please enter a number.")
+    return principebal
+
+def transaction_history(principebal, initial_balance):
+    print("\n Transaction History:")
+    print("-" * 30)
+    print(f"Initial Balance: ${initial_balance:.2f}")
+    print(f"Current Balance: ${principebal:.2f}")
+    net_change = principebal - initial_balance
+    if net_change >= 0:
+        print(f"Net Change: +${net_change:.2f} (Deposit)")
+    else:
+        print(f"Net Change: -${abs(net_change):.2f} (Withdrawal)")
+
+def main():
+    principebal = 1000.0
+    initial_balance = 1000.0
+
+    display_header()
+    print(f"Initial Balance: ${principebal:.2f}")
+    print("-" * 50)
+
+    while True:
+        display_menu()
+        choice = input("\nEnter your choice (1-5): ")
+
+        if choice == '1':
+            check_balance(principebal)
+
+        elif choice == '2':
+            principebal = deposit_money(principebal)
+
+        elif choice == '3':
+            principebal = withdraw_money(principebal)
+
+        elif choice == '4':
+            transaction_history(principebal, initial_balance)
+
+        elif choice == '5':
+            print("\n" + "=" * 50)
+            print("     Thank you for using ATM!")
+            print("           Have a nice day! ")
+            print("=" * 50)
+            break
+
+        else:
+            print("\n Invalid choice! Please enter 1-5.")
+
+        input("\nPress Enter to continue...")
+
+if __name__ == "__main__":
+    main()
