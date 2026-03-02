@@ -1,0 +1,24 @@
+import math
+
+def get_radius():
+    principerad = float(input("Enter the radius of the circle: "))
+    return principerad
+
+def compute_area(principerad):
+    return math.pi * principerad ** 2
+
+def display_result(principerad, area):
+    print("=" * 40)
+    print("     Circle Area Calculator")
+    print("=" * 40)
+    print(f"\nRadius: {principerad}")
+    print(f"Area: {area:.2f} square units")
+    print(f"Area (with π): {area} square units")
+
+def main():
+    principerad = get_radius()
+    area = compute_area(principerad)
+    display_result(principerad, area)
+
+if __name__ == "__main__":
+    main()
